@@ -52,6 +52,7 @@ class Product extends JsonResource
             'base_image'             => ProductImageFacade::getProductBaseImage($product),
             'created_at'             => $product->created_at,
             'updated_at'             => $product->updated_at,
+            'weight'                 => $product->weight,
 
             /* product's reviews */
             'reviews'                => [
@@ -166,9 +167,24 @@ class Product extends JsonResource
                     ? $this->getBookingProductInfo($product)
                     : null
             ),
+             /* simple product */ #SKP
+          /*  $this->mergeWhen(
+                $product->type == 'simple',
+                $product->type == 'simple'
+                    ? $this->getSimpleProductInfo($product)
+                    : []
+            ),*/
+            $this->merge($this->getSimpleProductInfo($product)),
         ];
     }
 
+
+    private function getSimpleProductInfo($product)
+    {
+        return [
+            'additional_info' => app('Webkul\Product\Helpers\View')->getAdditionalData($product)
+        ];
+    }
     /**
      * Get grouped product's extra information.
      *
