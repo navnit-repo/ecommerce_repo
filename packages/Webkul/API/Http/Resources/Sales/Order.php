@@ -106,6 +106,8 @@ class Order extends JsonResource
             'shipments'                          => Shipment::collection($this->shipments),
             'updated_at'                         => $this->updated_at,
             'created_at'                         => $this->created_at,
+            'delivery_instructions'              => $this->delivery_instructions,
+            'preferred_delivery_time'             => $this->preferred_delivery_time,
         ];
     }
 }

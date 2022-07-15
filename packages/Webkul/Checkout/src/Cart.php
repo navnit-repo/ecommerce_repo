@@ -404,6 +404,23 @@ class Cart
         return $cart;
     }
 
+    public function saveDiliveryInstructions($data): bool
+    {
+        if (! $cart = $this->getCart()) {
+            return false;
+        }
+        
+        if(isset($data["delivery_instructions"]))
+        $cart->delivery_instructions=$data["delivery_instructions"];
+
+        if(isset($data["preferred_delivery_time"]))
+        $cart->preferred_delivery_time=$data["preferred_delivery_time"];
+
+        $cart->save();
+
+        return true;
+    }
+
     /**
      * Save customer address.
      *
@@ -685,6 +702,9 @@ class Cart
             'billing_address'       => Arr::except($data['billing_address'], ['id', 'cart_id']),
             'payment'               => Arr::except($data['payment'], ['id', 'cart_id']),
             'channel'               => core()->getCurrentChannel(),
+            #SKP
+            'delivery_instructions'               => $data['delivery_instructions'], 
+            'preferred_delivery_time'               => $data['preferred_delivery_time'],
         ];
 
         if ($this->getCart()->haveStockableItems()) {
@@ -763,7 +783,7 @@ class Cart
         $cart = $this->getCart();
 
         $data = $cart->toArray();
-
+    
         $data['billing_address'] = $cart->billing_address->toArray();
 
         if ($cart->haveStockableItems()) {
