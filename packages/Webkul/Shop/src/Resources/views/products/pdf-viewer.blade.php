@@ -26,18 +26,18 @@ See https://github.com/adobe-type-tools/cmap-resources
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="google" content="notranslate">
-    <title>PDF.js viewer</title>
+    <title>PDF viewer</title>
 
-    <link rel="stylesheet" href="{{ asset('pdf.js/web/viewer.css') }}">
+    <link rel="stylesheet" href="{{ asset('pdfjs/web/viewer.css') }}">
 
     <!-- This snippet is used in production (included from viewer.html) -->
     <link rel="resource" type="application/l10n" href="locale/locale.properties">
     <script>
-        var LIB_PATH="{{ asset('pdf.js/') }}/";
+        var LIB_PATH="{{ asset('pdfjs/') }}/";
         var PDF_URL="{{$file_url}}";
     </script>
-    <script src="{{ asset('pdf.js/build/pdf.js') }}"></script>
-    <script src="{{ asset('pdf.js/web/viewer.js') }}"></script>
+    <script src="{{ asset('pdfjs/build/pdfjs') }}"></script>
+    <script src="{{ asset('pdfjs/web/viewer.js') }}"></script>
     
    
    
